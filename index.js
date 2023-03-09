@@ -131,15 +131,12 @@ let lon;
 function error(err) {
   console.log(err.code, err.message);
 }
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(pos => {
-    lat = pos.coords.latitude;
-    lon = pos.coords.longitude;
-    getWeather();
-  }, error);
-} else {
-  alert("Sorry, geolocation is out of navigator");
-}
+
+navigator.geolocation.getCurrentPosition(pos => {
+  lat = pos.coords.latitude;
+  lon = pos.coords.longitude;
+  getWeather();
+}, error);
 function getWeather() {
   fetch(
     `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`
